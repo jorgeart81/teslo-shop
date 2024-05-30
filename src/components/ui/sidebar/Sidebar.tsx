@@ -28,7 +28,9 @@ export const Sidebar = () => {
           <div className='fixed top-0 left-0 w-screen h-screen z-20 bg-black opacity-30'></div>
 
           {/* Blur */}
-          <div className='fade-in fixed top-0 left-0 w-screen h-screen z-20 backdrop-filter backdrop-blur-sm'></div>
+          <div
+            onClick={closeSideMenu}
+            className='fade-in fixed top-0 left-0 w-screen h-screen z-20 backdrop-filter backdrop-blur-sm'></div>
         </>
       )}
 
