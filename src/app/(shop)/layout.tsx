@@ -12,9 +12,9 @@ export default function ShopLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <div className='min-h-dvh'>
+    <>
       <TopMenu />
-      {children}
-    </div>
+      <div className='min-h-dvh sm:px-9'>{children}</div>
+    </>
   );
 }
