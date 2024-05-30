@@ -1,5 +1,5 @@
-import { TopMenu } from '@/components/ui';
 import type { Metadata } from 'next';
+import { Sidebar, TopMenu } from '@/components/ui';
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -14,6 +14,7 @@ export default function ShopLayout({
   return (
     <>
       <TopMenu />
+      <Sidebar />
       <div className='min-h-dvh sm:px-9'>{children}</div>
     </>
   );

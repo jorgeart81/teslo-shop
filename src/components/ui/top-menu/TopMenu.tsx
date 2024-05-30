@@ -22,7 +22,7 @@ export const TopMenu = () => {
   return (
     <>
       <div className='invisible h-14 w-full'></div>
-      <nav className='flex px-5 h-14 justify-between items-center w-full fixed top-0 z-20 bg-white'>
+      <nav className='flex px-5 h-14 justify-between items-center w-full fixed top-0 z-10 bg-white'>
         <Link href={'/'}>
           <span className={`${titleFont.className} antialiased font-bold`}>
             Teslo
