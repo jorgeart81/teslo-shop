@@ -16,7 +16,7 @@ const linkList = [
     label: 'Mujeres',
   },
   {
-    to: '/category/kids',
+    to: '/category/kid',
     label: 'Niños',
   },
 ];
