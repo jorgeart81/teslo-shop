@@ -2,7 +2,7 @@ import { notFound } from 'next/navigation';
 
 import { initialData } from '@/seed/seed';
 import { titleFont } from '@/config/fonts';
-import { ProductSlideshow, QuantitySelector, SizeSelector } from '@/components/product';
+import { ProductMobileSlideshow, ProductSlideshow, QuantitySelector, SizeSelector } from '@/components/product';
 
 interface Props {
 	params: {
@@ -19,10 +19,13 @@ export default function Page({ params }: Props) {
 	}
 
 	return (
-		<div className='mt-5 mb-10 grid md:grid-cols-3 gap-3'>
+		<div className='mt-5 mb-10 grid md:grid-cols-3 md:gap-3'>
 			{/* Slideshow */}
 			<div className='col-span-1 md:col-span-2'>
-				<ProductSlideshow title={product.title} images={product.images} />
+				{/* Mobile Slideshow */}
+				<ProductMobileSlideshow title={product.title} images={product.images} className='block md:hidden' />
+				{/* Desktop Slideshow */}
+				<ProductSlideshow title={product.title} images={product.images} className='hidden md:block' />
 			</div>
 
 			{/* Details */}
