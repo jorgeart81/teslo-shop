@@ -19,7 +19,7 @@ export const QuantitySelector = ({ quantity }: Props) => {
 			<button onClick={() => onQuatityChange(-1)}>
 				<IoRemoveCircleOutline size={30} />
 			</button>
-			<span className='w-20 mx-3 px-5 py-1 bg-gray-100 text-center rounded'>{count}</span>
+			<span className='w-16 md:w-20 mx-3 px-5 py-1 bg-gray-100 text-center rounded'>{count}</span>
 			<button onClick={() => onQuatityChange(1)}>
 				<IoAddCircleOutline size={30} />
 			</button>
