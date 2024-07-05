@@ -23,7 +23,7 @@ export default function Login() {
 					<div className='flex-1 border-t border-gray-500'></div>
 				</div>
 
-				<Link href='/auth/new-account' className='btn-secondary text-center'>
+				<Link href='/auth/register' className='btn-secondary text-center'>
 					Crear una nueva cuenta
 				</Link>
 			</div>
