@@ -15,7 +15,11 @@ docker compose up -d
 ```bash
 pnpx prisma migrate dev
 ```
-6. Run the development server:
+6. Run seed
+```bash
+pnpm seed
+```
+7. Run the development server:
 ```bash
 pnpm run dev
 ```
