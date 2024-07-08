@@ -1,8 +1,10 @@
+export const revalidate = 604800; // 7 days
+
 import { notFound } from 'next/navigation';
 
-import { initialData } from '@/seed/seed';
-import { titleFont } from '@/config/fonts';
+import { getProductBySlug } from '@/actions';
 import { ProductMobileSlideshow, ProductSlideshow, QuantitySelector, SizeSelector } from '@/components/product';
+import { titleFont } from '@/config/fonts';
 
 interface Props {
 	params: {
@@ -10,9 +12,9 @@ interface Props {
 	};
 }
 
-export default function Page({ params }: Props) {
+export default async function Page({ params }: Props) {
 	const { slug } = params;
-	const product = initialData.products.find((p) => p.slug === slug);
+	const product = await getProductBySlug(slug);
 
 	if (!product) {
 		notFound();
