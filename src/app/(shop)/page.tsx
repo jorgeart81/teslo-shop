@@ -10,10 +10,12 @@ interface Props {
 }
 
 export default async function Home({ searchParams }: Props) {
-	const page = searchParams.page ? parseInt(searchParams.page) : 1;
+	const pageParam = searchParams.page ? Number(searchParams.page) : 1;
+	const page = isNaN(pageParam) ? 1 : pageParam;
+
 	const { products, currentPage, totalPages } = await getPaginatedProductsWithImages({ page });
 
-	if (products.length === 0 || currentPage > totalPages) {
+	if (products.length === 0 || pageParam < 0 || isNaN(pageParam)) {
 		redirect('/');
 	}
 
@@ -21,7 +23,7 @@ export default async function Home({ searchParams }: Props) {
 		<>
 			<Title title='Tienda' subtitle='Todos los productos' />
 			<ProductGrid products={products} />
-			<Pagination />
+			<Pagination totalPages={totalPages} />
 		</>
 	);
 }
