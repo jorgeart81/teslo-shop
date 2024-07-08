@@ -8,15 +8,15 @@ import { useUIStore } from '@/store';
 
 const linkList = [
   {
-    to: '/category/men',
+    to: '/gender/men',
     label: 'Hombres',
   },
   {
-    to: '/category/women',
+    to: '/gender/women',
     label: 'Mujeres',
   },
   {
-    to: '/category/kid',
+    to: '/gender/kid',
     label: 'Niños',
   },
 ];
