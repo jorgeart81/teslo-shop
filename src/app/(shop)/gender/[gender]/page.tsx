@@ -1,9 +1,10 @@
+export const revalidate = 60; //60 seg.
+
 import { notFound, redirect } from 'next/navigation';
 
 import { getPaginatedProductsWithImages } from '@/actions';
 import { ProductGrid } from '@/components/products';
 import { Pagination, Title } from '@/components/ui';
-import { Category } from '@/interfaces';
 import { Gender } from '@prisma/client';
 
 const titles: Record<string, string> = {
