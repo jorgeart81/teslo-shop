@@ -3,7 +3,13 @@ export const revalidate = 604800; // 7 days
 import { notFound } from 'next/navigation';
 
 import { getProductBySlug } from '@/actions';
-import { ProductMobileSlideshow, ProductSlideshow, QuantitySelector, SizeSelector } from '@/components/product';
+import {
+	ProductMobileSlideshow,
+	ProductSlideshow,
+	QuantitySelector,
+	SizeSelector,
+	StockLabel,
+} from '@/components/product';
 import { titleFont } from '@/config/fonts';
 
 interface Props {
@@ -12,7 +18,7 @@ interface Props {
 	};
 }
 
-export default async function Page({ params }: Props) {
+export default async function ProductBySlugPage({ params }: Props) {
 	const { slug } = params;
 	const product = await getProductBySlug(slug);
 
@@ -32,6 +38,7 @@ export default async function Page({ params }: Props) {
 
 			{/* Details */}
 			<div className='col-span-1 px-5'>
+				<StockLabel slug={slug} />
 				<h1 className={`${titleFont.className} antialiased font-bold text-xl`}>{product.title}</h1>
 				<p className='text-lg mb-5'>{product.price}</p>
 
