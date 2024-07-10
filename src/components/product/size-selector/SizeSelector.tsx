@@ -17,7 +17,7 @@ export const SizeSelector = ({ selectedSize, availableSizes, handleSizeSelector 
 					<button
 						key={size}
 						onClick={() => handleSizeSelector(size)}
-						className={clsx('mx-2 hover:underline text-lg', { underline: size === selectedSize })}>
+						className={clsx('mx-2 hover:underline text-lg', { 'underline font-semibold': size === selectedSize })}>
 						{size}
 					</button>
 				))}

@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { QuantitySelector, SizeSelector } from '@/components/product';
 import type { Product, Size } from '@/interfaces';
@@ -10,12 +10,32 @@ interface Props {
 }
 
 export const AddToCart = ({ product }: Props) => {
-	const [selectedSize, setSelectedSize] = useState<Size>();
+	const [size, setSize] = useState<Size>();
+	const [quantity, setQuantity] = useState<number>(1);
+	const [showError, setShowError] = useState(false);
+	const cantAddToCart = quantity && size;
+
+	const handleAddToCart = () => {
+		if (!cantAddToCart) {
+			setShowError(true);
+			return;
+		}
+
+		console.log(quantity, size);
+	};
+
+	useEffect(() => {
+		if (cantAddToCart) setShowError(false);
+	}, [cantAddToCart]);
 
 	return (
 		<>
-			<SizeSelector selectedSize={selectedSize} availableSizes={product.sizes} handleSizeSelector={setSelectedSize} />
-			<QuantitySelector quantity={2} />
+			{showError && <span className='mt-2 text-red-500 fade-in'>Debe seleccionar una talla*</span>}
+			<SizeSelector selectedSize={size} availableSizes={product.sizes} handleSizeSelector={setSize} />
+			<QuantitySelector quantity={quantity} limit={product.inStock} onQuantityChanged={setQuantity} />
+			<button disabled={showError && !cantAddToCart} onClick={handleAddToCart} className='btn-primary my-5'>
+				Agregar al carrito
+			</button>
 		</>
 	);
 };

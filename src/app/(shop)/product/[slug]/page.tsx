@@ -4,11 +4,7 @@ import { Metadata, ResolvingMetadata } from 'next';
 import { notFound } from 'next/navigation';
 
 import { getProductBySlug } from '@/actions';
-import {
-	ProductMobileSlideshow,
-	ProductSlideshow,
-	StockLabel
-} from '@/components/product';
+import { ProductMobileSlideshow, ProductSlideshow, StockLabel } from '@/components/product';
 import { titleFont } from '@/config/fonts';
 import { AddToCart } from './ui/AddToCart';
 
@@ -61,9 +57,7 @@ export default async function ProductBySlugPage({ params }: Props) {
 				<p className='text-lg mb-5'>{product.price}</p>
 
 				<AddToCart product={product} />
-
-				<button className='btn-primary my-5'>Agregar al carrito</button>
-
+				
 				{/* Description */}
 				<h3 className='font-bold text-sm'>Descripción</h3>
 				<p className='font-light'>{product.description}</p>
