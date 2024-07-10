@@ -2,23 +2,21 @@
 
 import { useEffect, useState } from 'react';
 
+import { cartProductAdapter } from '@/adapters';
 import { QuantitySelector, SizeSelector } from '@/components/product';
 import type { Product, Size } from '@/interfaces';
 import { useCartStore } from '@/store';
-import { cartProductAdapter } from '@/adapters';
 
 interface Props {
 	product: Product;
 }
 
 export const AddToCart = ({ product }: Props) => {
+	const addProductToCart = useCartStore((state) => state.addProductToCart);
 	const [size, setSize] = useState<Size>();
 	const [quantity, setQuantity] = useState<number>(1);
 	const [showError, setShowError] = useState(false);
 	const cantAddToCart = quantity && size;
-	const { addProductToCart } = useCartStore((state) => ({
-		addProductToCart: state.addProductToCart,
-	}));
 
 	const handleAddToCart = () => {
 		if (!cantAddToCart) {
@@ -27,6 +25,8 @@ export const AddToCart = ({ product }: Props) => {
 		}
 
 		addProductToCart(cartProductAdapter({ ...product, quantity, size }));
+		setQuantity(1);
+		setSize(undefined);
 	};
 
 	useEffect(() => {

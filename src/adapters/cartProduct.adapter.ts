@@ -8,6 +8,6 @@ export const cartProductAdapter = (product: any): CartProduct => {
 		price: product.price,
 		quantity: product.quantity,
 		size: product.size,
-		image: product.images[1],
+		image: product.images[0],
 	};
 };
