@@ -8,15 +8,21 @@ interface State {
 }
 
 interface Actions {
-	addProductToCart: (product: CartProduct) => void;
 	getTotalItems: () => number;
+	addProductToCart: (product: CartProduct) => void;
 	updateProductQuantity: (product: CartProduct, quantity: number) => void;
+	removeProductInCart: (product: CartProduct) => void;
 }
 
 const storeApi: StateCreator<State & Actions, [['zustand/devtools', never]]> = (set, get) => ({
 	cart: [],
 
 	// Actions
+	getTotalItems: () => {
+		const { cart } = get();
+		return cart.reduce((total, item) => total + item.quantity, 0);
+	},
+
 	addProductToCart: (product: CartProduct) => {
 		const { cart } = get();
 
@@ -32,11 +38,6 @@ const storeApi: StateCreator<State & Actions, [['zustand/devtools', never]]> = (
 		set({ cart: copyCart });
 	},
 
-	getTotalItems: () => {
-		const { cart } = get();
-		return cart.reduce((total, item) => total + item.quantity, 0);
-	},
-
 	updateProductQuantity: (product: CartProduct, quantity: number) => {
 		const { cart } = get();
 
@@ -47,6 +48,13 @@ const storeApi: StateCreator<State & Actions, [['zustand/devtools', never]]> = (
 			return item;
 		});
 
+		set({ cart: updatedProductInCart });
+	},
+
+	removeProductInCart: (product: CartProduct) => {
+		const { cart } = get();
+
+		const updatedProductInCart = cart.filter(({ id, size }) => id !== product.id && size !== product.size);
 		set({ cart: updatedProductInCart });
 	},
 });

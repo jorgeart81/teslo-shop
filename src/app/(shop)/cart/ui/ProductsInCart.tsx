@@ -8,9 +8,10 @@ import { useCartStore } from '@/store';
 import Link from 'next/link';
 
 export const ProductsInCart = () => {
-	const { productsInCart, updateProductQuantity } = useCartStore((state) => ({
+	const { productsInCart, updateProductQuantity, removeProductInCart } = useCartStore((state) => ({
 		productsInCart: state.cart,
 		updateProductQuantity: state.updateProductQuantity,
+		removeProductInCart: state.removeProductInCart,
 	}));
 
 	const [loaded, setLoaded] = useState(false);
@@ -49,7 +50,9 @@ export const ProductsInCart = () => {
 								}}
 							/>
 						</div>
-						<button className='underline bottom-0'>Remover</button>
+						<button onClick={() => removeProductInCart(product)} className='underline bottom-0'>
+							Remover
+						</button>
 					</div>
 				</div>
 			))}
