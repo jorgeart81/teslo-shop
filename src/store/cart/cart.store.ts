@@ -10,6 +10,7 @@ interface State {
 interface Actions {
 	addProductToCart: (product: CartProduct) => void;
 	getTotalItems: () => number;
+	updateProductQuantity: (product: CartProduct, quantity: number) => void;
 }
 
 const storeApi: StateCreator<State & Actions, [['zustand/devtools', never]]> = (set, get) => ({
@@ -34,6 +35,19 @@ const storeApi: StateCreator<State & Actions, [['zustand/devtools', never]]> = (
 	getTotalItems: () => {
 		const { cart } = get();
 		return cart.reduce((total, item) => total + item.quantity, 0);
+	},
+
+	updateProductQuantity: (product: CartProduct, quantity: number) => {
+		const { cart } = get();
+
+		const updatedProductInCart = cart.map((item) => {
+			if (item.id === product.id && item.size === product.size) {
+				return { ...item, quantity };
+			}
+			return item;
+		});
+
+		set({ cart: updatedProductInCart });
 	},
 });
 
