@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import { useEffect, useState } from 'react';
 import { IoCartOutline, IoSearchOutline } from 'react-icons/io5';
 
 import { titleFont } from '@/config/fonts';
@@ -25,9 +26,13 @@ export const TopMenu = () => {
 	const { openSideMenu } = useUIStore((state) => ({
 		openSideMenu: state.openSideMenu,
 	}));
-	const { cart } = useCartStore((state) => ({
-		cart: state.cart,
-	}));
+	const totalItemsInCart = useCartStore((state) => state.getTotalItems());
+
+	const [loaded, setLoaded] = useState(false);
+
+	useEffect(() => {
+		setLoaded(true);
+	}, []);
 
 	return (
 		<>
@@ -53,9 +58,11 @@ export const TopMenu = () => {
 						<IoSearchOutline className='size-5' />
 					</Link>
 					<Link href={'/search'} className='relative z-0'>
-						<span className='absolute text-white text-xs font-bold rounded-full px-1 bg-blue-700 z-10 -top-2 -right-2'>
-							{cart.length}
-						</span>
+						{loaded && totalItemsInCart > 0 && (
+							<span className='absolute text-white text-xs font-bold rounded-full px-1 bg-blue-700 z-10 -top-2 -right-2'>
+								{totalItemsInCart}
+							</span>
+						)}
 						<div className='relative z-0'>
 							<IoCartOutline className='size-5' />
 						</div>

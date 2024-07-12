@@ -9,6 +9,7 @@ interface State {
 
 interface Actions {
 	addProductToCart: (product: CartProduct) => void;
+	getTotalItems: () => number;
 }
 
 const storeApi: StateCreator<State & Actions, [['zustand/devtools', never]]> = (set, get) => ({
@@ -17,17 +18,22 @@ const storeApi: StateCreator<State & Actions, [['zustand/devtools', never]]> = (
 	// Actions
 	addProductToCart: (product: CartProduct) => {
 		const { cart } = get();
-		
+
 		// const productInCart = cart.some(({ id, size }) => id === product.id && size === product.size);
 		const productInCartIndex = cart.findIndex(({ id, size }) => id === product.id && size === product.size);
 		if (productInCartIndex < 0) {
 			set({ cart: [...cart, product] });
 			return;
 		}
-		
+
 		const copyCart = [...cart];
 		copyCart[productInCartIndex].quantity += product.quantity;
 		set({ cart: copyCart });
+	},
+
+	getTotalItems: () => {
+		const { cart } = get();
+		return cart.reduce((total, item) => total + item.quantity, 0);
 	},
 });
 
