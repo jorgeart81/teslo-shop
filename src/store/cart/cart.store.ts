@@ -34,8 +34,8 @@ const storeApi: StateCreator<State & Actions, [['zustand/devtools', never]]> = (
 	getSumaryInformation: () => {
 		const { cart } = get();
 		const itemsInCart = cart.reduce((total, product) => total + product.quantity, 0);
-		const total = cart.reduce((total, product) => total + product.quantity * product.price, 0);
-		const subTotal = total / 1.15; // 0.15 (15% taxes)
+		const subTotal = cart.reduce((total, product) => total + product.quantity * product.price, 0);
+		const total = subTotal * 1.15; // 0.15 (15% taxes)
 		const tax = total - subTotal;
 
 		return {
