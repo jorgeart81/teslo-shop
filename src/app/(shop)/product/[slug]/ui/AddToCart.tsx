@@ -37,7 +37,7 @@ export const AddToCart = ({ product }: Props) => {
 		<>
 			{showError && <span className='mt-2 text-red-500 fade-in'>Debe seleccionar una talla*</span>}
 			<SizeSelector selectedSize={size} availableSizes={product.sizes} handleSizeSelector={setSize} />
-			<QuantitySelector quantity={quantity} limit={product.inStock} onQuantityChanged={setQuantity} />
+			<QuantitySelector quantity={quantity} onQuantityChanged={setQuantity} />
 			<button disabled={showError && !cantAddToCart} onClick={handleAddToCart} className='btn-primary my-5'>
 				Agregar al carrito
 			</button>
