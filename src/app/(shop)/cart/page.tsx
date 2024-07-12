@@ -2,6 +2,7 @@ import Link from 'next/link';
 
 import { Title } from '@/components/ui';
 import { ProductsInCart } from './ui/ProductsInCart';
+import { OrderSumary } from './ui/OrderSumary';
 
 export default function CartPage() {
 	// redirect('/empty');
@@ -28,17 +29,7 @@ export default function CartPage() {
 						<h2 className='text-2xl mb-2'>Resumen de orden</h2>
 
 						<div className='grid grid-cols-2'>
-							<span>No. Productos</span>
-							<span className='text-right'>3 artículos</span>
-
-							<span>Subtotal</span>
-							<span className='text-right'>$ 85</span>
-
-							<span>Impuestos (15%)</span>
-							<span className='text-right'>$ 15</span>
-
-							<span className='mt-5 text-2xl'>Total:</span>
-							<span className='mt-5 text-2xl text-right'>3 artículos</span>
+							<OrderSumary />
 						</div>
 
 						<div className='mt-5 mb-2 w-full'>

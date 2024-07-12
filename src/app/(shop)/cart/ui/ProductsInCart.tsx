@@ -2,10 +2,10 @@
 
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 
 import { QuantitySelector } from '@/components/product';
 import { useCartStore } from '@/store';
-import Link from 'next/link';
 
 export const ProductsInCart = () => {
 	const { productsInCart, updateProductQuantity, removeProductInCart } = useCartStore((state) => ({
