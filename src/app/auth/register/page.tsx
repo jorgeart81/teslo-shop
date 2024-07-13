@@ -2,7 +2,7 @@ import Link from 'next/link';
 
 import { titleFont } from '@/config/fonts';
 
-export default function Register() {
+export default function RegisterPage() {
 	return (
 		<div className='flex flex-col justify-center h-[calc(100dvh-2rem)] mb-8'>
 			<h1 className={`${titleFont.className} text-4xl mb-5`}>Nueva cuenta</h1>
@@ -19,7 +19,7 @@ export default function Register() {
 
 				<button className='btn-primary'>Crear cuenta</button>
 
-				{/* divisor l ine */}
+				{/* divisor line */}
 				<div className='flex items-center my-5'>
 					<div className='flex-1 border-t border-gray-500'></div>
 					<div className='px-2 text-gray-800'>O</div>
